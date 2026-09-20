@@ -63,10 +63,34 @@ The goal of this project was to:
 
 ---
 
+## 💡 Key Findings
+
+**1. Individual audio features don't predict popularity.** Every audio feature — danceability, energy, loudness, and the rest — correlates with popularity at under 0.1 in magnitude (the strongest, instrumentalness, is only -0.09), so popularity isn't simply "more danceable = more popular." Comparing median audio feature values between the full dataset and the top 1% most popular tracks confirmed this: none showed a meaningful shift, meaning popular songs don't follow a distinct audio profile. Segmenting by genre family did surface some moderate relationships invisible at the whole-dataset level, but not enough to suggest that mixing genres together had been masking a strong underlying trend.
+
+**2. Audio features correlate with each other, even where none correlate with popularity**. Loudness and energy move together closely (r = 0.76), as do valence and danceability (r = 0.48), while acousticness trends strongly opposite to both energy (r = -0.73) and loudness (r = -0.59). These are the strongest relationships found anywhere in the dataset — far exceeding any feature's link to popularity.
+
+*Refer to the image below — the correlation heatmap between audio features and popularity.*
+
+![Correlation Between Audio Features and Popularity](correlation_audio_popularity.png)
+
+**3. Genre is a far stronger signal than any single audio feature.** Average popularity ranges from ~27-29 (Jazz/Blues, Hip-Hop/R&B) to ~42-44 (Pop, Alternative/Other). This represents a gap of roughly 15-16 points, versus correlations of ~0.09 for individual features.
+
+*Refer to the image below — average popularity by genre family.*
+
+![Average Popularity by Genre Family](average_popularity_genre.png)
+
+**4. Takeaway for a hypothetical playlist/marketing team:** don't optimise a track's audio profile to chase popularity — the data doesn't support that strategy. Popularity looks driven mostly by factors outside this dataset (artist recognition, playlist placement, release timing).
+
+**Caveats:** this dataset has one row per (track, genre) pair, not one row per unique song, and genres are artificially balanced at ~1,000 tracks each. Real-world genre popularity shares would look different on organic streaming data.
+
+---
+
 ## 📁 Repository Structure
 
 ```
-├── spotify_eda_python.ipynb     # Full analysis notebook
+├── spotify_eda_python.ipynb          # Full analysis notebook
+├── correlation_audio_popularity.png  # Correlation heatmap (audio features vs. popularity)
+├── average_popularity_genre.png      # Average popularity by genre family
 ├── README.md
 ```
 
